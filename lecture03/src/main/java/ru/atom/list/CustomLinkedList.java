@@ -8,6 +8,9 @@ import java.util.ListIterator;
 
 public class CustomLinkedList<E> implements List<E> {
 
+    private ListNode<E> head;
+    private int size;
+
     @Override
     public int size() {
         throw new UnsupportedOperationException();
@@ -44,11 +47,6 @@ public class CustomLinkedList<E> implements List<E> {
     }
 
     @Override
-    public E get(int index) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
     public int indexOf(Object o) {
         throw new UnsupportedOperationException();
     }
@@ -58,6 +56,65 @@ public class CustomLinkedList<E> implements List<E> {
         throw new UnsupportedOperationException();
     }
 
+    public void addLast(int payload) {
+        ListNode cur = head;
+        while (cur.getNext() != null) {
+            cur = cur.getNext();
+        }
+
+        cur.setNext(new ListNode(payload,null));
+        size++;
+    }
+
+    public void addFirst(int payload) {
+        ListNode firstListNode = new ListNode(payload, head);
+        head = firstListNode;
+        size++;
+    }
+
+    public void add(int idx, int payload) {
+        ListNode cur = head;
+        for (int i = 0; i < idx - 1; i++) {
+            cur = cur.getNext();
+        }
+
+        ListNode before = cur.getNext();
+        cur.setNext(new ListNode(payload, before));
+        size++;
+    }
+
+    public E getFirst() {
+        return head.getPayload();
+    }
+
+    public E getLast() {
+        ListNode cur = head;
+        while (cur.getNext() != null) {
+            cur = cur.getNext();
+        }
+
+        return (E) cur.getPayload();
+    }
+
+    public E get(int idx) {
+        ListNode cur = head;
+        for (int i = 0; i < idx; i++) {
+            cur = cur.getNext();
+        }
+
+        return (E) cur.getPayload();
+    }
+
+    public E remove(int idx) {
+        ListNode cur = head;
+        for (int i = 0; i < idx - 1; i++) {
+            cur = cur.getNext();
+        }
+
+        cur.setNext(cur.getNext().getNext());
+        size--;
+        return null;
+    }
 
     /*
       !!! Implement methods below Only if you know what you are doing !!!
@@ -101,14 +158,6 @@ public class CustomLinkedList<E> implements List<E> {
      */
     @Override
     public void add(int index, E element) {
-    }
-
-    /**
-     * Do not implement
-     */
-    @Override
-    public E remove(int index) {
-        return null;
     }
 
     /**
