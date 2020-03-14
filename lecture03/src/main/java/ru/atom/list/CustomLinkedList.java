@@ -13,17 +13,23 @@ public class CustomLinkedList<E> implements List<E> {
 
     @Override
     public int size() {
-        throw new UnsupportedOperationException();
+        return size;
     }
 
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException();
+        return size == 0;
     }
 
     @Override
     public boolean contains(Object o) {
-        throw new UnsupportedOperationException();
+        ListNode cur = head;
+        Object cur1 = cur;
+        while (cur1 != o) {
+            cur = cur.getNext();
+            cur1 = cur;
+        }
+        return true;
     }
 
     @Override
@@ -47,6 +53,11 @@ public class CustomLinkedList<E> implements List<E> {
     }
 
     @Override
+    public E get(int index) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public int indexOf(Object o) {
         throw new UnsupportedOperationException();
     }
@@ -56,13 +67,15 @@ public class CustomLinkedList<E> implements List<E> {
         throw new UnsupportedOperationException();
     }
 
+
+    /*
     public void addLast(int payload) {
         ListNode cur = head;
         while (cur.getNext() != null) {
             cur = cur.getNext();
         }
 
-        cur.setNext(new ListNode(payload,null));
+        cur.setNext(new ListNode(value,null));
         size++;
     }
 
@@ -116,9 +129,14 @@ public class CustomLinkedList<E> implements List<E> {
         return null;
     }
 
+    public int getSize() {
+        return size;
+    }
+
     /*
       !!! Implement methods below Only if you know what you are doing !!!
      */
+
     @Override
     public boolean containsAll(Collection<?> c) {
         for (Object o : c) {
@@ -158,6 +176,11 @@ public class CustomLinkedList<E> implements List<E> {
      */
     @Override
     public void add(int index, E element) {
+    }
+
+    @Override
+    public E remove(int index) {
+        return null;
     }
 
     /**
